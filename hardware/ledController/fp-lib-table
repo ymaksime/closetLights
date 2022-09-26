@@ -1,0 +1,4 @@
+(fp_lib_table
+  (lib (name "digikey-footprints")(type "KiCad")(uri "C:/Users/ymaksime/OneDrive - Fortive/Documents/DEV/OtherProjects/KiCad/3dPartyLibraries/digikey-kicad-library/digikey-footprints.pretty")(options "")(descr ""))
+  (lib (name "footprints")(type "KiCad")(uri "C:/Users/ymaksime/OneDrive - Fortive/Documents/DEV/OtherProjects/KiCad/3dPartyLibraries/PIC16F1769-I_ML/footprints.pretty")(options "")(descr ""))
+)
