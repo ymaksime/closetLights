@@ -416,12 +416,12 @@
       ""
     ],
     [
-      "f0c3186f-b4c9-467b-a6b7-74f6c97b467f",
-      "power"
-    ],
-    [
       "3bc33efb-21fe-4c44-a8f6-d39938b6f203",
       "LED_driver"
+    ],
+    [
+      "456969c3-d846-4b15-bafe-4af9f522e670",
+      "power"
     ]
   ],
   "text_variables": {}
