@@ -151,4 +151,5 @@
   (lib (name "dk_USB-DVI-HDMI-Connectors")(type "Legacy")(uri "C:/Users/ymaksime/OneDrive - Fortive/Documents/DEV/OtherProjects/KiCad/3dPartyLibraries/digikey-kicad-library/digikey-symbols/dk_USB-DVI-HDMI-Connectors.lib")(options "")(descr ""))
   (lib (name "PIC16F1769-I_ML")(type "Legacy")(uri "C:/Users/ymaksime/OneDrive - Fortive/Documents/DEV/OtherProjects/KiCad/3dPartyLibraries/PIC16F1769-I_ML/symbols/PIC16F1769-I_ML.lib")(options "")(descr ""))
   (lib (name "ym_BJT")(type "KiCad")(uri "C:/Users/ymaksime/OneDrive - Fortive/Documents/DEV/OtherProjects/KiCad/3dPartyLibraries/yevgeniy-kicad-library/ym_BJT.kicad_sym")(options "")(descr ""))
+  (lib (name "ym_Modules")(type "KiCad")(uri "C:/Users/ymaksime/OneDrive - Fortive/Documents/DEV/OtherProjects/KiCad/3dPartyLibraries/yevgeniy-kicad-library/ym_Modules.kicad_sym")(options "")(descr ""))
 )
