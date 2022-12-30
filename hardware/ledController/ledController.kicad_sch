@@ -1828,7 +1828,7 @@
   (symbol (lib_id "Device:R_Small_US") (at 187.96 140.97 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 3c0907ef-a933-4de9-8705-d6d11137d646)
-    (property "Reference" "R?" (id 0) (at 181.61 139.7 0)
+    (property "Reference" "R11" (id 0) (at 181.61 139.7 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "2.4K" (id 1) (at 181.61 142.24 0)
@@ -1865,7 +1865,7 @@
     (uuid 550caa41-c6c7-4ca7-ad95-cdf830f669fd)
     (property "Reference" "D1" (id 0) (at 43.4975 82.6602 0))
     (property "Value" "B340" (id 1) (at 43.4975 85.1971 0))
-    (property "Footprint" "Diode_SMD:D_SMC" (id 2) (at 43.18 83.185 0)
+    (property "Footprint" "Diode_SMD:D_SMA" (id 2) (at 43.18 83.185 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "http://www.jameco.com/Jameco/Products/ProdDS/1538777.pdf" (id 3) (at 43.18 87.63 0)
@@ -1930,7 +1930,7 @@
   (symbol (lib_id "Device:LED_Dual_AKKA") (at 190.5 125.73 90) (mirror x) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 66c50902-9d0c-447a-90de-d45899b9f06c)
-    (property "Reference" "D?" (id 0) (at 195.834 124.7683 90)
+    (property "Reference" "D3" (id 0) (at 195.834 124.7683 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "LED_Dual_AKKA" (id 1) (at 195.834 127.3052 90)
@@ -2598,13 +2598,13 @@
       (reference "C4") (unit 1) (value "1000p") (footprint "Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder")
     )
     (path "/550caa41-c6c7-4ca7-ad95-cdf830f669fd"
-      (reference "D1") (unit 1) (value "B340") (footprint "Diode_SMD:D_SMC")
+      (reference "D1") (unit 1) (value "B340") (footprint "Diode_SMD:D_SMA")
     )
     (path "/a7df80c0-2e6d-4c17-9294-da09aa165e49"
       (reference "D2") (unit 1) (value "RCLAMP0502BA") (footprint "Package_TO_SOT_SMD:SOT-523")
     )
     (path "/66c50902-9d0c-447a-90de-d45899b9f06c"
-      (reference "D?") (unit 1) (value "LED_Dual_AKKA") (footprint "LED_SMD:LED_Kingbright_APHBM2012_2x1.25mm")
+      (reference "D3") (unit 1) (value "LED_Dual_AKKA") (footprint "LED_SMD:LED_Kingbright_APHBM2012_2x1.25mm")
     )
     (path "/31243e06-0979-4fae-860f-4cad80206009"
       (reference "H1") (unit 1) (value "MountingHole") (footprint "MountingHole:MountingHole_2.5mm_Pad_TopBottom")
@@ -2670,7 +2670,7 @@
       (reference "R10") (unit 1) (value "1") (footprint "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder")
     )
     (path "/3c0907ef-a933-4de9-8705-d6d11137d646"
-      (reference "R?") (unit 1) (value "2.4K") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
+      (reference "R11") (unit 1) (value "2.4K") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
     )
     (path "/04b0a461-f9a3-4e36-bb78-ad096b231c16"
       (reference "TP1") (unit 1) (value "TestPoint") (footprint "ym-footprints:TestPoint_Pad_0.185in_x_0.135in")
