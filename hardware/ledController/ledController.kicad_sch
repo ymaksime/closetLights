@@ -2183,7 +2183,7 @@
     (property "Value" "RCLAMP0502BA" (id 1) (at 117.602 54.9787 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Footprint" "Package_TO_SOT_SMD:SOT-523" (id 2) (at 120.65 53.34 0)
+    (property "Footprint" "ym-footprints:SC-75" (id 2) (at 120.65 53.34 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "https://www.semtech.com/products/circuit-protection/low-capacitance/rclamp0502ba" (id 3) (at 110.49 52.07 0)
@@ -2601,7 +2601,7 @@
       (reference "D1") (unit 1) (value "B340") (footprint "Diode_SMD:D_SMA")
     )
     (path "/a7df80c0-2e6d-4c17-9294-da09aa165e49"
-      (reference "D2") (unit 1) (value "RCLAMP0502BA") (footprint "Package_TO_SOT_SMD:SOT-523")
+      (reference "D2") (unit 1) (value "RCLAMP0502BA") (footprint "ym-footprints:SC-75")
     )
     (path "/66c50902-9d0c-447a-90de-d45899b9f06c"
       (reference "D3") (unit 1) (value "LED_Dual_AKKA") (footprint "LED_SMD:LED_Kingbright_APHBM2012_2x1.25mm")
