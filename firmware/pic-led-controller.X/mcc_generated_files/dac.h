@@ -1,24 +1,24 @@
 /**
-  OPA1 Generated Driver File
+  DAC Generated Driver API Header File
 
   @Company
     Microchip Technology Inc.
 
   @File Name
-    opa1.c
+    dac.h
 
   @Summary
-    This is the generated driver implementation file for the OPA1 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+    This is the generated header file for the DAC driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
 
   @Description
-    This source file provides implementations for driver APIs for OPA1.
+    This header file provides APIs for driver for DAC.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.8
         Device            :  PIC16LF1709
-        Driver Version    :  2.01
+        Driver Version    :  2.10
     The generated drivers are tested against the following:
         Compiler          :  XC8 2.36 and above
-        MPLAB             :  MPLAB X 6.00
+        MPLAB 	          :  MPLAB X 6.00
 */
 
 /*
@@ -44,8 +44,8 @@
     SOFTWARE.
 */
 
-#ifndef OPA1_H
-#define OPA1_H
+#ifndef DAC_H
+#define DAC_H
 
 /**
   Section: Included Files
@@ -61,16 +61,16 @@
 #endif
 
 /**
-  Section: OPA1 APIs
+  Section: DAC APIs
 */
 
 /**
   @Summary
-    Initializes the OPA1
+    Initializes the DAC
 
   @Description
-    This routine initializes the OPA1.
-    This routine must be called before any other OPA1 routine is called.
+    This routine initializes the DAC.
+    This routine must be called before any other DAC routine is called.
     This routine should only be called once during system initialization.
 
   @Preconditions
@@ -83,14 +83,84 @@
     None
 
   @Comment
-    Initialize
+    
 
   @Example
     <code>
-    OPA1_Initialize();
+    DAC_Initialize();
     </code>
 */
-void OPA1_Initialize(void);
+void DAC_Initialize(void);
+
+/**
+  @Summary
+    Set Input data into DAC.
+
+  @Description
+    This routine pass the digital input data into
+    DAC voltage reference control register.
+
+  @Preconditions
+    The DAC_Initialize() routine should be called
+    prior to use this routine.
+
+  @Param
+    inputData - 8bit digital data to DAC.
+
+  @Returns
+    None
+
+  @Example
+    <code>
+    uint8_t count=0;
+
+    DAC_Initialize();
+
+    for(count=0; count<=30; count++)
+    {
+        DAC_SetOutput(count);
+    }
+
+    while(1)
+    {
+    }
+    </code>
+*/
+void DAC_SetOutput(uint8_t inputData);
+
+/**
+  @Summary
+    Read input data fed to DAC.
+
+  @Description
+    This routine reads the digital input data fed to
+    DAC voltage reference control register.
+
+  @Preconditions
+    The DAC_Initialize() routine should be called
+    prior to use this routine.
+
+  @Param
+    None
+
+  @Returns
+    uint8_t inputData - digital data fed to DAC
+
+  @Example
+    <code>
+    uint8_t count=0;
+    uint8_t inputData;
+
+    DAC_Initialize();
+
+    inputData = DAC_GetOutput();
+
+    while(1)
+    {
+    }
+    </code>
+*/
+uint8_t DAC_GetOutput(void);
 
 #ifdef __cplusplus  // Provide C++ Compatibility
 
@@ -98,8 +168,7 @@ void OPA1_Initialize(void);
 
 #endif
 
-#endif // OPA1_H
+#endif // DAC_H
 /**
  End of File
 */
-

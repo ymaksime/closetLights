@@ -14,7 +14,7 @@
     This source file provides APIs for EUSART.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.8
-        Device            :  PIC16F1769
+        Device            :  PIC16LF1709
         Driver Version    :  2.1.1
     The generated drivers are tested against the following:
         Compiler          :  XC8 2.36 and above
@@ -104,10 +104,10 @@ void EUSART_Initialize(void)
     TX1STA = 0x24;
 
     // SP1BRGL 34; 
-    SPBRGL = 0x22;
+    SP1BRGL = 0x22;
 
     // SP1BRGH 0; 
-    SPBRGH = 0x00;
+    SP1BRGH = 0x00;
 
 
     EUSART_SetFramingErrorHandler(EUSART_DefaultFramingErrorHandler);

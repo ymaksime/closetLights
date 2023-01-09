@@ -14,7 +14,7 @@
     This header file provides APIs for driver for ADC.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.8
-        Device            :  PIC16F1769
+        Device            :  PIC16LF1709
         Driver Version    :  2.02
     The generated drivers are tested against the following:
         Compiler          :  XC8 2.36 and above
@@ -96,11 +96,9 @@ typedef enum
 {
     sensor =  0x5,
     vMeas =  0x7,
-    channel_DAC4_Output =  0x1A,
-    channel_DAC3_Output =  0x1B,
-    channel_DAC2_Output =  0x1C,
+    channel_FVRBuffer2 =  0x1C,
     channel_Temp =  0x1D,
-    channel_DAC1_Output =  0x1E,
+    channel_DAC =  0x1E,
     channel_FVRBuffer1 =  0x1F
 } adc_channel_t;
 

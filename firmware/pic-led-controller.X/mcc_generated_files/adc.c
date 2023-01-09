@@ -14,7 +14,7 @@
     This source file provides implementations for driver APIs for ADC.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.8
-        Device            :  PIC16F1769
+        Device            :  PIC16LF1709
         Driver Version    :  2.02
     The generated drivers are tested against the following:
         Compiler          :  XC8 2.36 and above
@@ -68,11 +68,11 @@ void ADC_Initialize(void)
 {
     // set the ADC to the options selected in the User Interface
     
-    // ADFM right; ADNREF VSS; ADPREF FVR; ADCS FOSC/4; 
-    ADCON1 = 0xC3;
+    // ADFM right; ADPREF FVR; ADCS FOSC/16; 
+    ADCON1 = 0xD3;
     
-    // TRIGSEL no_auto_trigger; 
-    ADCON2 = 0x00;
+    // TRIGSEL TMR2_match_PR2; 
+    ADCON2 = 0x50;
     
     // ADRESL 0; 
     ADRESL = 0x00;
@@ -80,7 +80,7 @@ void ADC_Initialize(void)
     // ADRESH 0; 
     ADRESH = 0x00;
     
-    // ADGO stop; ADON enabled; CHS AN0; 
+    // GO_nDONE stop; ADON enabled; CHS AN0; 
     ADCON0 = 0x01;
     
     // Enabling ADC interrupt.
@@ -101,14 +101,14 @@ void ADC_SelectChannel(adc_channel_t channel)
 void ADC_StartConversion(void)
 {
     // Start the conversion
-    ADCON0bits.ADGO = 1;
+    ADCON0bits.GO_nDONE = 1;
 }
 
 
 bool ADC_IsConversionDone(void)
 {
     // Start the conversion
-   return ((bool)(!ADCON0bits.ADGO));
+   return ((bool)(!ADCON0bits.GO_nDONE));
 }
 
 adc_result_t ADC_GetConversionResult(void)
@@ -129,10 +129,10 @@ adc_result_t ADC_GetConversion(adc_channel_t channel)
     __delay_us(ACQ_US_DELAY);
 
     // Start the conversion
-    ADCON0bits.ADGO = 1;
+    ADCON0bits.GO_nDONE = 1;
 
     // Wait for the conversion to finish
-    while (ADCON0bits.ADGO)
+    while (ADCON0bits.GO_nDONE)
     {
     }
 

@@ -1,24 +1,24 @@
 /**
-  OPA1 Generated Driver File
+  TMR2 Generated Driver File
 
   @Company
     Microchip Technology Inc.
 
   @File Name
-    opa1.c
+    tmr2.c
 
   @Summary
-    This is the generated driver implementation file for the OPA1 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+    This is the generated driver implementation file for the TMR2 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
 
   @Description
-    This source file provides implementations for driver APIs for OPA1.
+    This source file provides APIs for TMR2.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.8
         Device            :  PIC16LF1709
         Driver Version    :  2.01
     The generated drivers are tested against the following:
         Compiler          :  XC8 2.36 and above
-        MPLAB             :  MPLAB X 6.00
+        MPLAB 	          :  MPLAB X 6.00
 */
 
 /*
@@ -49,17 +49,76 @@
 */
 
 #include <xc.h>
-#include "opa1.h"
+#include "tmr2.h"
 
 /**
-  Section: OPA1 APIs
+  Section: Global Variables Definitions
 */
 
-void OPA1_Initialize(void)
+/**
+  Section: TMR2 APIs
+*/
+
+void TMR2_Initialize(void)
 {
-    // OPA1SP High_GBWP_mode; OPA1EN enabled; OPA1PCH DAC; OPA1UG OPAIN-_pin; 
-    OPA1CON = 0xC2;
+    // Set TMR2 to the options selected in the User Interface
+
+    // PR2 15; 
+    PR2 = 0x0F;
+
+    // TMR2 0; 
+    TMR2 = 0x00;
+
+    // Clearing IF flag.
+    PIR1bits.TMR2IF = 0;
+
+    // T2CKPS 1:16; T2OUTPS 1:1; TMR2ON off; 
+    T2CON = 0x02;
+}
+
+void TMR2_StartTimer(void)
+{
+    // Start the Timer by writing to TMRxON bit
+    T2CONbits.TMR2ON = 1;
+}
+
+void TMR2_StopTimer(void)
+{
+    // Stop the Timer by writing to TMRxON bit
+    T2CONbits.TMR2ON = 0;
+}
+
+uint8_t TMR2_ReadTimer(void)
+{
+    uint8_t readVal;
+
+    readVal = TMR2;
+
+    return readVal;
+}
+
+void TMR2_WriteTimer(uint8_t timerVal)
+{
+    // Write to the Timer2 register
+    TMR2 = timerVal;
+}
+
+void TMR2_LoadPeriodRegister(uint8_t periodVal)
+{
+   PR2 = periodVal;
+}
+
+bool TMR2_HasOverflowOccured(void)
+{
+    // check if  overflow has occurred by checking the TMRIF bit
+    bool status = PIR1bits.TMR2IF;
+    if(status)
+    {
+        // Clearing IF flag.
+        PIR1bits.TMR2IF = 0;
+    }
+    return status;
 }
 /**
- End of File
+  End of File
 */

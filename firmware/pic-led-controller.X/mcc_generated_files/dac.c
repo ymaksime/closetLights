@@ -1,24 +1,24 @@
 /**
-  OPA1 Generated Driver File
+  DAC Generated Driver File
 
   @Company
     Microchip Technology Inc.
 
   @File Name
-    opa1.c
+    dac.c
 
   @Summary
-    This is the generated driver implementation file for the OPA1 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+    This is the generated driver implementation file for the DAC driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
 
   @Description
-    This source file provides implementations for driver APIs for OPA1.
+    This source file provides APIs for DAC.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.8
         Device            :  PIC16LF1709
-        Driver Version    :  2.01
+        Driver Version    :  2.10
     The generated drivers are tested against the following:
         Compiler          :  XC8 2.36 and above
-        MPLAB             :  MPLAB X 6.00
+        MPLAB 	          :  MPLAB X 6.00
 */
 
 /*
@@ -49,16 +49,28 @@
 */
 
 #include <xc.h>
-#include "opa1.h"
+#include "dac.h"
 
 /**
-  Section: OPA1 APIs
+  Section: DAC APIs
 */
 
-void OPA1_Initialize(void)
+void DAC_Initialize(void)
 {
-    // OPA1SP High_GBWP_mode; OPA1EN enabled; OPA1PCH DAC; OPA1UG OPAIN-_pin; 
-    OPA1CON = 0xC2;
+    // DAC1EN enabled; DAC1NSS VSS; DAC1PSS FVR; DAC1OE1 disabled; DAC1OE2 disabled; 
+    DAC1CON0 = 0x88;
+    // DAC1R 0; 
+    DAC1CON1 = 0x00;
+}
+
+void DAC_SetOutput(uint8_t inputData)
+{
+    DAC1CON1  = inputData;
+}
+
+uint8_t DAC_GetOutput(void)
+{
+    return DAC1CON1;
 }
 /**
  End of File
