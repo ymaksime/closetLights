@@ -43,6 +43,8 @@
 
 #include "mcc_generated_files/mcc.h"
 
+#include "serial_comm.h"
+
 /*
                          Main application
  */
@@ -50,25 +52,21 @@ void main(void)
 {
     // initialize the device
     SYSTEM_Initialize();
+    
+    // initialize the peripherals
+    serial_comm_init();
 
-    // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
-    // Use the following macros to:
-
-    // Enable the Global Interrupts
-    //INTERRUPT_GlobalInterruptEnable();
-
-    // Enable the Peripheral Interrupts
-    //INTERRUPT_PeripheralInterruptEnable();
-
-    // Disable the Global Interrupts
-    //INTERRUPT_GlobalInterruptDisable();
-
-    // Disable the Peripheral Interrupts
-    //INTERRUPT_PeripheralInterruptDisable();
-
+    // Enable the Global and Peripheral Interrupts
+    INTERRUPT_GlobalInterruptEnable();
+    INTERRUPT_PeripheralInterruptEnable();
+    
+    // Turn on the green LED indicating that we are alive
+    ledGrn_SetHigh();
+    
     while (1)
     {
-        // Add your application code
+        // Run the serial communication statemachine
+        serial_comm_check();
     }
 }
 /**
