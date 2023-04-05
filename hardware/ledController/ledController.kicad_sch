@@ -1470,7 +1470,7 @@
     (effects (font (size 2.54 2.54)) (justify left bottom))
     (uuid 0e35a2a6-6e34-4e0c-9223-7411a7e30bfc)
   )
-  (text "It needs a smart cable like FTDI TTL-232R-3V3\n	1 GND\n	2 ~{CTS} --> to cable\n	3 VCC       clip pin for keying\n	4 TXD <-- from cable\n	5 RXD --> to cable\n	6 ~{RTS} <-- from cable\nPlug key pin hole on cable connector"
+  (text "It needs a smart cable like FTDI TTL-232R-3V3\n	1 GND\n	2 ~{CTS} -- clip pin for keying\n	3 VCC <-- from cable\n	4 TXD <-- from cable\n	5 RXD --> to cable\n	6 ~{RTS} <-- from cable\nPlug key pin hole on cable connector"
     (at 72.39 35.56 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 3acadd53-18dc-41c2-81ae-114c65243e71)
