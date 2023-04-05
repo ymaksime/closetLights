@@ -2026,7 +2026,7 @@
     (property "Reference" "R1" (id 0) (at 246.761 88.0653 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "1K" (id 1) (at 246.761 90.6022 0)
+    (property "Value" "15K" (id 1) (at 246.761 90.6022 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" (id 2) (at 245.11 88.9 0)
@@ -2591,7 +2591,7 @@
       (reference "Q2") (unit 1) (value "BUJ302AD") (footprint "ym-footprints:SOT-428")
     )
     (path "/90328c5a-63ab-4227-8ee9-43ae007d29c3"
-      (reference "R1") (unit 1) (value "1K") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
+      (reference "R1") (unit 1) (value "15K") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
     )
     (path "/ee662500-be84-4ec7-8cfc-96900a58f9ca"
       (reference "R2") (unit 1) (value "50K") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
