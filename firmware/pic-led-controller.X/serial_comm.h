@@ -11,10 +11,9 @@
 /**
   Section: Included Files
 */
-#include "mcc_generated_files/pin_manager.h"
-#include "mcc_generated_files/eusart.h"
-#include "mcc_generated_files/adc.h"
+#include "mcc_generated_files/mcc.h"
 #include "version.h"
+#include "adc_control.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -111,8 +110,83 @@ void serial_comm_check(void);
 
 void func_led_r(void);
 void func_led_g(void);
+
+/**
+  @Summary
+    Set ADC active channel to 7
+
+  @Description
+    This function switches ADC active channel to channel 7, which is measuring
+    the input voltage to the module, Vmeas signal on the schematic, RC3
+
+  @Preconditions
+    ADC_Initialize() and adc_control_init() function() should have been called
+
+  @Param
+    None
+
+  @Returns
+    None
+*/
 void func_adc_7(void);
+
+/**
+  @Summary
+    Set ADC active channel to 5
+
+  @Description
+    This function switches ADC active channel to channel 5, which is measuring
+    the output of the photo-resistor, SENSE-OUT signal on the schematic, RC1
+
+  @Preconditions
+    ADC_Initialize() and adc_control_init() function() should have been called
+
+  @Param
+    None
+
+  @Returns
+    None
+*/
 void func_adc_5(void);
+
+/**
+  @Summary
+    Displays (RS232) the return value of read_milivolts() function
+
+  @Description
+    Use this function to output the return value of read_milivolts() fucntion
+    over the RS232 channel.  Use func_adc_7() or func_adc_5() function to select
+    desired ADC channel
+
+  @Preconditions
+    ADC_Initialize() and adc_control_init() function() should have been called
+
+  @Param
+    None
+
+  @Returns
+    None
+*/
+void func_adc_read(void);
+
+/**
+  @Summary
+    Displays (RS232) current version of the Firmware code
+
+  @Description
+    Use this function to output the current Firmware version over the RS232
+
+  @Preconditions
+    EUSART_Initialize() function should have been called for the ISR to execute 
+    correctly.
+
+  @Param
+    None
+
+  @Returns
+    None
+*/
+void func_version(void);
 
 #ifdef __cplusplus  // Provide C++ Compatibility
 

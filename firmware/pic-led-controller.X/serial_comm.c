@@ -8,19 +8,20 @@
 */
 // Used for converting binary to ASCII
 const unsigned char convertnibble[] = "0123456789ABCDEF";
+// Used to store final command from the user
+uint8_t cmdBuffer[CMD_BUFFER_SIZE];
 
 /**
-  Section: EUSART APIs
+  Section: private function for EUSART APIs
 */
 static void send8BytesAsAsciiHex(uint8_t data);
 static void send16BytesAsAsciiHex(uint16_t data);
+static void sendString(char* str);
 static void handleBackspace(void);
 static void handleCR(void);
 static void updateRxBuffer(uint8_t rxData);
 static void handleCmdCall(char *buf);
 void serial_comm_OverrunErrorHandler(void);
-
-uint8_t cmdBuffer[CMD_BUFFER_SIZE];
 
 void serial_comm_init(void) {
     // Set a custom ISR handler
@@ -71,6 +72,13 @@ static void send16BytesAsAsciiHex(uint16_t data) {
     send8BytesAsAsciiHex(data & 0xff);
 }
 
+static void sendString(char* str) {
+    while (*str) {
+        EUSART_Write(*str++);
+    }
+    handleCR();
+}
+
 static void handleBackspace(void) {
     // First, send the backspace character back to return the cursor
     EUSART_Write(BACKSPACE);
@@ -103,12 +111,6 @@ static void updateRxBuffer(uint8_t rxData) {
         }
         // Now let's deal with the command
         handleCmdCall(rx_cmd);
-        
-        // TODO: process the command
-//        for (int j = 0; j < CMD_BUFFER_SIZE; j++) {
-//            EUSART_Write(cmdBuffer[j]);
-//        }
-//        handleCR();
 
         // Re-initialize the RX buffer
         for (int i = 0; i < CMD_BUFFER_SIZE; i++) {
@@ -138,17 +140,24 @@ static void handleCmdCall(char *buf) {
     char *cmdptr;
     int offset;
     
+    // List of all the mnemonics of the available functions
     static const char read_str[] = 
-    "LEDR LEDG ADC5 ADC7";
+    "LEDR LEDG ADC5 ADC7 ADCR VERG";
     
+    // List of function pointers
+    // Every entry corresponds to an entry in the read_str[] array
     static void (* const readfns[sizeof(read_str)/(CMD_SIZE + 1)])(void) =
     {
-        func_led_r, func_led_g, func_adc_5, func_adc_7
+        func_led_r, func_led_g, func_adc_5, func_adc_7, func_adc_read,
+        func_version
     };
     
+    // Find the index of the first match
     cmdptr = strstr(read_str, buf);
     if (cmdptr != NULL) {
+        // Compute the offset based on mnemonic size
         offset = (cmdptr - read_str) / (CMD_SIZE + 1);
+        // Find the function pointer
         readfns[offset]();
     }
 }
@@ -159,18 +168,28 @@ void func_led_r(void) {
 
 void func_led_g(void) {
     ledGrn_Toggle();
+    send8BytesAsAsciiHex(TMR2_ReadTimer());
+    handleCR();
 }
 
 void func_adc_5(void) {
-    adc_result_t temp = ADC_GetConversion(sensor);
-    send16BytesAsAsciiHex(temp);
-    handleCR();
+    // Set the appropriate ADC channel: sensor
+    adc_set_channel(sensor);
 }
 
 void func_adc_7(void) {
-    adc_result_t temp = ADC_GetConversion(vMeas);
-    send16BytesAsAsciiHex(temp);
+    // Set the appropriated ADC channel: vMeas, the input voltage
+    adc_set_channel(vMeas);
+}
+
+void func_adc_read(void) {
+    // Get the averaged data for the active ADC channel
+    send16BytesAsAsciiHex(read_milivolts());
     handleCR();
+}
+
+void func_version(void) {
+    sendString(VERSION);
 }
 
 

@@ -44,6 +44,7 @@
 #include "mcc_generated_files/mcc.h"
 
 #include "serial_comm.h"
+#include "adc_control.h"
 
 /*
                          Main application
@@ -55,6 +56,7 @@ void main(void)
     
     // initialize the peripherals
     serial_comm_init();
+    adc_control_init();
 
     // Enable the Global and Peripheral Interrupts
     INTERRUPT_GlobalInterruptEnable();
@@ -62,6 +64,9 @@ void main(void)
     
     // Turn on the green LED indicating that we are alive
     ledGrn_SetHigh();
+    
+    // Start the timer
+    TMR2_StartTimer();
     
     while (1)
     {
