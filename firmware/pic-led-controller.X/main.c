@@ -45,6 +45,7 @@
 
 #include "serial_comm.h"
 #include "adc_control.h"
+#include "dac_control.h"
 
 /*
                          Main application
@@ -57,6 +58,7 @@ void main(void)
     // initialize the peripherals
     serial_comm_init();
     adc_control_init();
+    dac_control_init();
 
     // Enable the Global and Peripheral Interrupts
     INTERRUPT_GlobalInterruptEnable();
@@ -70,7 +72,7 @@ void main(void)
     
     while (1)
     {
-        // Run the serial communication statemachine
+        // Run the serial communication state-machine
         serial_comm_check();
     }
 }

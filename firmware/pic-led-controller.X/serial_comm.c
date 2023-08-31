@@ -17,6 +17,7 @@ uint8_t cmdBuffer[CMD_BUFFER_SIZE];
 static void send8BytesAsAsciiHex(uint8_t data);
 static void send16BytesAsAsciiHex(uint16_t data);
 static void sendString(char* str);
+static uint16_t receiveAsciiAsUint16(uint8_t* ptr);
 static void handleBackspace(void);
 static void handleCR(void);
 static void updateRxBuffer(uint8_t rxData);
@@ -77,6 +78,16 @@ static void sendString(char* str) {
         EUSART_Write(*str++);
     }
     handleCR();
+}
+
+static uint16_t receiveAsciiAsUint16(uint8_t* ptr) {
+    uint16_t result = 0;
+    // Check if we are looking at a valid character
+    while ((*ptr >= '0') && (*ptr <= '9')) {
+        result = result * 10;
+        result = result + ((uint16_t)(*ptr++ - 0x30));
+    }
+    return result;
 }
 
 static void handleBackspace(void) {
@@ -142,14 +153,14 @@ static void handleCmdCall(char *buf) {
     
     // List of all the mnemonics of the available functions
     static const char read_str[] = 
-    "LEDR LEDG ADC5 ADC7 ADCR VERG";
+    "LEDR LEDG ADC5 ADC7 ADCR VERG DACS DACR";
     
     // List of function pointers
     // Every entry corresponds to an entry in the read_str[] array
     static void (* const readfns[sizeof(read_str)/(CMD_SIZE + 1)])(void) =
     {
         func_led_r, func_led_g, func_adc_5, func_adc_7, func_adc_read,
-        func_version
+        func_version, func_dac_set, func_dac_read
     };
     
     // Find the index of the first match
@@ -190,6 +201,16 @@ void func_adc_read(void) {
 
 void func_version(void) {
     sendString(VERSION);
+}
+
+void func_dac_set(void) {
+    uint16_t dac_value = receiveAsciiAsUint16(&cmdBuffer[CMD_SIZE + 1]);
+    dac_set((uint8_t) dac_value);
+}
+
+void func_dac_read(void) {
+    send8BytesAsAsciiHex(dac_get());
+    handleCR();
 }
 
 
