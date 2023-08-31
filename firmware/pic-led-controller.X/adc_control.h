@@ -65,7 +65,7 @@ void adc_control_init(void);
   @Returns
     Averaged and rounded down content of the circular buffer
 */
-uint16_t read_milivolts(void);
+uint16_t adc_read(void);
 
 /**
   @Summary

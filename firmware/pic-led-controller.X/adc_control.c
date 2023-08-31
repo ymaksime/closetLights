@@ -37,7 +37,7 @@ void adc_set_channel(adc_channel_t chan) {
     }
 }
 
-uint16_t read_milivolts(void) {
+uint16_t adc_read(void) {
     // Stop the timer to make sure we don't get interrupted
     TMR2_StopTimer();
     

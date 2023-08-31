@@ -195,7 +195,7 @@ void func_adc_7(void) {
 
 void func_adc_read(void) {
     // Get the averaged data for the active ADC channel
-    send16BytesAsAsciiHex(read_milivolts());
+    send16BytesAsAsciiHex(adc_read());
     handleCR();
 }
 
