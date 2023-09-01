@@ -55,6 +55,13 @@ void adc_control_init(void);
   @Description
     After disabling TIM2 interrupt, it finds the rounded down averaged value
     of the ADC readings stored in circular buffer of size ADC_SAMPLE_SIZE
+   
+    To convert to millivolts, do the following:
+    millivolts = adc_val * 2048 / 1024
+    where 
+    * 2048 is our internal voltage reference in millivolts
+    * 1024 = 10-bit value from ADC
+    Example: millivolts = 282 * 2048 / 1024 = 564 mV
 
   @Preconditions
     None
