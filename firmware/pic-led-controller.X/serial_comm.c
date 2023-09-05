@@ -22,6 +22,7 @@ static void handleBackspace(void);
 static void handleCR(void);
 static void updateRxBuffer(uint8_t rxData);
 static void handleCmdCall(char *buf);
+static uint8_t current_echo_state(uint8_t new_state);
 void serial_comm_OverrunErrorHandler(void);
 
 void serial_comm_init(void) {
@@ -34,6 +35,9 @@ void serial_comm_init(void) {
     for (int i = 0; i < CMD_BUFFER_SIZE; i++) {
         cmdBuffer[i] = INIT_CHAR;
     }
+    
+    // We need the output
+    (void)current_echo_state(0);
 }
 
 void serial_comm_check(void) {
@@ -41,19 +45,22 @@ void serial_comm_check(void) {
     uint8_t rxChar;
     // Check if we received anything
     if (EUSART_is_rx_ready()) {
-        // Echo back the received character
+        
         rxChar = EUSART_Read();
         
-        if (BACKSPACE == rxChar) {
-            handleBackspace();
-        } else if (CR == rxChar) {
-            handleCR();
-        }else {
-            EUSART_Write(rxChar);
+        // Echo back only if the the ECHO is enabled
+        if (current_echo_state(3)) {
+            if (BACKSPACE == rxChar) {
+                handleBackspace();
+            } else if (CR == rxChar) {
+                handleCR();
+            }else {
+                EUSART_Write(rxChar);
+            }
         }
-        
         // Store the character in RX buffer
         updateRxBuffer(rxChar);
+     
     }
 }
 
@@ -153,14 +160,14 @@ static void handleCmdCall(char *buf) {
     
     // List of all the mnemonics of the available functions
     static const char read_str[] = 
-    "LEDR LEDG ADC5 ADC7 ADCR VERG DACS DACR";
+    "LEDR LEDG ADC5 ADC7 ADCR VERG DACS DACR ECHO";
     
     // List of function pointers
     // Every entry corresponds to an entry in the read_str[] array
     static void (* const readfns[sizeof(read_str)/(CMD_SIZE + 1)])(void) =
     {
         func_led_r, func_led_g, func_adc_5, func_adc_7, func_adc_read,
-        func_version, func_dac_set, func_dac_read
+        func_version, func_dac_set, func_dac_read, func_echo
     };
     
     // Find the index of the first match
@@ -171,6 +178,22 @@ static void handleCmdCall(char *buf) {
         // Find the function pointer
         readfns[offset]();
     }
+}
+
+static uint8_t current_echo_state(uint8_t new_state) {
+    // Current state of serial echo
+    static uint8_t echo_state = 0;
+    
+    // Assign the new state
+    // The function expects only 0 or 1 for assignment.  Other values will be
+    // ignored
+    if (0 == new_state) {
+        echo_state = 0;
+    }
+    else if (1 == new_state) {
+        echo_state = 1;
+    }
+    return echo_state;
 }
 
 void func_led_r(void) {
@@ -213,6 +236,18 @@ void func_dac_read(void) {
     handleCR();
 }
 
+void func_echo(void) {
+    // Get the value followed the ECHO command
+    uint16_t echo_val = receiveAsciiAsUint16(&cmdBuffer[CMD_SIZE + 1]);
+    if (0 == echo_val) {
+        // Turn OFF the serial echo
+        (void)current_echo_state(0);
+    }
+    else {
+        // Enable serial echo
+        (void)current_echo_state(1);
+    }
+}
 
 void serial_comm_rx_ISR(void) {
     if (RC1STAbits.OERR) {
