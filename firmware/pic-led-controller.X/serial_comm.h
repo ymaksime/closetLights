@@ -227,6 +227,8 @@ void func_dac_set(void);
 */
 void func_dac_read(void);
 
+void func_echo(void);
+
 #ifdef __cplusplus  // Provide C++ Compatibility
 
     }
