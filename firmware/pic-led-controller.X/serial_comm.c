@@ -138,8 +138,8 @@ static void updateRxBuffer(uint8_t rxData) {
                     rxIndex--;
                     cmdBuffer[rxIndex] = INIT_CHAR;
                 }
-            // This is just a regular character, store it
-            } else {
+            // Store it if it is a regular character (exclude special characters)
+            } else if (rxData >= SPACE) {
                 cmdBuffer[rxIndex] = rxData;
                 rxIndex++;
             }     
