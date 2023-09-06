@@ -34,3 +34,6 @@ fp-info-cache
 *.log
 *.raw
 
+# MPLab build and dist directories
+build/
+dist/
