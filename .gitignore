@@ -29,3 +29,8 @@ fp-info-cache
 # Exported BOM files
 *.xml
 *.csv
+
+# We don't need RAW and LOG files
+*.log
+*.raw
+
