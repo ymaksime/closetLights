@@ -6,15 +6,13 @@ class PIC:
 
     def __init__(s, port, baud=115200, timeout=1):
         s._ser = serial.Serial()
-        s._ser.bautdrate = baud
+        s._ser.baudrate = baud
         s._ser.port = port
 
         s._ser.parity = serial.PARITY_NONE
         s._ser.bytesize = serial.EIGHTBITS
         s._ser.stopbits = serial.STOPBITS_ONE
         s._ser.timeout = timeout
-
-        s._version = {'CPU':0}
 
         try:
             s._ser.open()
