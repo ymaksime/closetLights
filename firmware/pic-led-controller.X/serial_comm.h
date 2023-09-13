@@ -15,6 +15,7 @@
 #include "version.h"
 #include "adc_control.h"
 #include "dac_control.h"
+#include "leds.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -227,7 +228,44 @@ void func_dac_set(void);
 */
 void func_dac_read(void);
 
+/**
+  @Summary
+    Controls whether to ECHO back the characters received over RS232
+
+  @Description
+    By default we want to disable echoing over RS232 to simplify the 
+    communication between the module and Python scripts.  But at the same time 
+    it is much more convenient when echo is enabled for a user.
+
+  @Preconditions
+    None
+
+  @Param
+    None
+
+  @Returns
+    None
+*/
 void func_echo(void);
+
+/**
+  @Summary
+    Controls the state of the LED ligth strip
+
+  @Description
+    Turns ON or OFF the LED light strip.  This function uses ramp-up and
+    ramp-down functions to turn ON or OFF the external LED strip light
+
+  @Preconditions
+    None
+
+  @Param
+    None
+
+  @Returns
+    None
+*/
+void func_light_set(void);
 
 #ifdef __cplusplus  // Provide C++ Compatibility
 

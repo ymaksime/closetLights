@@ -160,14 +160,14 @@ static void handleCmdCall(char *buf) {
     
     // List of all the mnemonics of the available functions
     static const char read_str[] = 
-    "LEDR LEDG ADC5 ADC7 ADCR VERG DACS DACR ECHO";
+    "LEDR LEDG ADC5 ADC7 ADCR VERG DACS DACR ECHO LITE";
     
     // List of function pointers
     // Every entry corresponds to an entry in the read_str[] array
     static void (* const readfns[sizeof(read_str)/(CMD_SIZE + 1)])(void) =
     {
         func_led_r, func_led_g, func_adc_5, func_adc_7, func_adc_read,
-        func_version, func_dac_set, func_dac_read, func_echo
+        func_version, func_dac_set, func_dac_read, func_echo, func_light_set
     };
     
     // Find the index of the first match
@@ -197,13 +197,11 @@ static uint8_t current_echo_state(uint8_t new_state) {
 }
 
 void func_led_r(void) {
-    ledRed_Toggle();
+    toggle_red_led();
 }
 
 void func_led_g(void) {
-    ledGrn_Toggle();
-    send8BytesAsAsciiHex(TMR2_ReadTimer());
-    handleCR();
+    toggle_green_led();
 }
 
 void func_adc_5(void) {
@@ -248,6 +246,18 @@ void func_echo(void) {
         (void)current_echo_state(1);
     }
 }
+
+void func_light_set(void) {
+    // Get the value for requested for lights state
+    uint16_t light_state = receiveAsciiAsUint16(&cmdBuffer[CMD_SIZE + 1]);
+    if (0 == light_state) {
+        //TODO
+    }
+    else {
+        //TODO
+    }
+}
+
 
 void serial_comm_rx_ISR(void) {
     if (RC1STAbits.OERR) {

@@ -64,9 +64,6 @@ void main(void)
     INTERRUPT_GlobalInterruptEnable();
     INTERRUPT_PeripheralInterruptEnable();
     
-    // Turn on the green LED indicating that we are alive
-    ledGrn_SetHigh();
-    
     // Start the timer
     TMR2_StartTimer();
     

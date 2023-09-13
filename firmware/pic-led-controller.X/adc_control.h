@@ -12,6 +12,7 @@
   Section: Included Files
 */
 #include "mcc_generated_files/mcc.h"
+#include "leds.h"
 
 #ifdef	__cplusplus
 extern "C" {

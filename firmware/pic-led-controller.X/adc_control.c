@@ -79,7 +79,7 @@ void adc_control_isr_handler(void) {
     // This is for debugging, LED heartbeat
     static uint16_t i;    
     if (++i >= 500) {
-        ledGrn_Toggle();
+        toggle_green_led();
         i = 0;
     }
 }
