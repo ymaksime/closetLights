@@ -14,6 +14,8 @@ volatile adc_result_t adcBuffer[ADC_SAMPLE_SIZE];
 */
 // Currently active ADC channel
 static adc_channel_t adcChan;
+// Initialize ADC buffer
+static void init_adc_buffer(void);
 
 void adc_control_init(void) {
     // Initialize variables
@@ -32,6 +34,12 @@ void adc_control_init(void) {
 void adc_set_channel(adc_channel_t chan) {
     // Don't do anything if the requested channel is what we already have
     if (adcChan != chan) {
+        
+        // Since we a changing the ADC channel, all of the stored value in the
+        // ADC buffer are no longer valid and we need to clear them off
+        init_adc_buffer();
+        
+        // Now change the channel
         adcChan = chan;
         ADC_SelectChannel(adcChan);
     }
@@ -62,6 +70,22 @@ uint16_t adc_read(void) {
     return result;
 }
 
+static void init_adc_buffer(void) {
+    // Stop the timer to make sure we don't get interrupted
+    TMR2_StopTimer();
+    
+    // Just in case the ADC conversion was started
+    while (!ADC_IsConversionDone()) {
+    }
+    
+    // Initialize the ADC buffer
+    for (int i = 0; i < ADC_SAMPLE_SIZE; i++) {
+        adcBuffer[i] = 0;
+    }
+    
+    // Start the timer
+    TMR2_StartTimer();
+}
 
 void adc_control_isr_handler(void) {
     
