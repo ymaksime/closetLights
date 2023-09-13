@@ -60,11 +60,19 @@ void DAC_Initialize(void)
     // DAC1EN enabled; DAC1NSS VSS; DAC1PSS FVR; DAC1OE1 disabled; DAC1OE2 disabled; 
     DAC1CON0 = 0x88;
     // DAC1R 0; 
-    DAC1CON1 = 0x00;
+    DAC1CON1 = 0x7D;
 }
 
 void DAC_SetOutput(uint8_t inputData)
 {
+    // If input value is 0, reconfigure the OP-AMP into a unity gain to make
+    // sure we don't source any current the outside transistor is completely off
+    if (0 == inputData) {
+        OPA1CON = 0xD2;
+    }
+    else {
+        OPA1CON = 0xC2;
+    }
     DAC1CON1  = inputData;
 }
 

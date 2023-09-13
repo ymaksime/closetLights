@@ -80,7 +80,8 @@ uint16_t adc_read(void);
 
   @Description
     Continuously updates internal circular buffer with new ADC readings of the 
-    active channel
+    active channel.  This ISR is triggered by Timer_2 which has a 1 millisecond
+    period.
 
   @Preconditions
     None
