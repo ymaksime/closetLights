@@ -711,7 +711,7 @@
   )
 
   (symbol (lib_id "ym_BJT:BUJ302AD") (at 139.7 93.98 0) (unit 1)
-    (in_bom yes) (on_board yes) (fields_autoplaced)
+    (in_bom yes) (on_board yes)
     (uuid ba008595-2930-489b-a118-346523cac1b3)
     (property "Reference" "Q2" (id 0) (at 143.5862 93.1453 0)
       (effects (font (size 1.27 1.27)) (justify left))
@@ -725,6 +725,7 @@
     (property "Datasheet" "https://www.ween-semi.com/sites/default/files/2018-11/BUJ302AD.pdf" (id 3) (at 139.7 93.98 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+    (property "Power" "80W" (id 4) (at 144.78 97.79 0))
     (pin "1" (uuid 6451a0d5-e82e-4ab8-8edb-43dec2ddcc65))
     (pin "2" (uuid 002d620f-9630-49a7-ba18-d34993d8d3ea))
     (pin "3" (uuid 7a0e7c2e-eff4-4c76-b3b7-f80584bce30e))
