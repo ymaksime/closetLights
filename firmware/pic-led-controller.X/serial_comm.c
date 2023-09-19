@@ -249,13 +249,8 @@ void func_echo(void) {
 
 void func_light_set(void) {
     // Get the value for requested for lights state
-    uint16_t light_state = receiveAsciiAsUint16(&cmdBuffer[CMD_SIZE + 1]);
-    if (0 == light_state) {
-        //TODO
-    }
-    else {
-        //TODO
-    }
+    uint16_t light_value = receiveAsciiAsUint16(&cmdBuffer[CMD_SIZE + 1]);
+    dac_set(milli_amps_to_dac(light_value));
 }
 
 

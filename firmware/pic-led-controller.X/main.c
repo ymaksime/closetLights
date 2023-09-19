@@ -46,6 +46,7 @@
 #include "serial_comm.h"
 #include "adc_control.h"
 #include "dac_control.h"
+#include "light_control.h"
 
 /*
                          Main application
@@ -59,6 +60,7 @@ void main(void)
     serial_comm_init();
     adc_control_init();
     dac_control_init();
+    light_control_init();
 
     // Enable the Global and Peripheral Interrupts
     INTERRUPT_GlobalInterruptEnable();

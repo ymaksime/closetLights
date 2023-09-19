@@ -16,6 +16,7 @@
 #include "adc_control.h"
 #include "dac_control.h"
 #include "leds.h"
+#include "light_control.h"
 #include <stdio.h>
 #include <string.h>
 
