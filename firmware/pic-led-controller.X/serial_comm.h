@@ -14,7 +14,6 @@
 #include "mcc_generated_files/mcc.h"
 #include "version.h"
 #include "adc_control.h"
-#include "dac_control.h"
 #include "leds.h"
 #include "light_control.h"
 #include <stdio.h>
@@ -190,44 +189,6 @@ void func_adc_read(void);
     None
 */
 void func_version(void);
-
-/**
-  @Summary
-    Sets DAC output to the desired value
-
-  @Description
-    Use this function to control DAC output.  It will only accept decimal values
-    and will truncate them 8-bit number.  The expected format is: DACS XXX.
-
-  @Preconditions
-    ADC_Initialize() and dac_control_init() functions should have been called
-
-  @Param
-    None
-
-  @Returns
-    None
-*/
-void func_dac_set(void);
-
-/**
-  @Summary
-    Displays (RS232) the return value of dac_get() function
-
-  @Description
-    Use this function to output the return value of dac_get() function over the 
-    RS232 channel. This is the current DAC value.
-
-  @Preconditions
-    ADC_Initialize() and dac_control_init() functions should have been called
-
-  @Param
-    None
-
-  @Returns
-    None
-*/
-void func_dac_read(void);
 
 /**
   @Summary

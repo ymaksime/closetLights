@@ -99,12 +99,12 @@ void adc_control_isr_handler(void) {
     if (++index >= ADC_SAMPLE_SIZE) {
         index = 0;
     }
-/*    
+    
     // This is for debugging, LED heartbeat
     static uint16_t i;    
     if (++i >= 500) {
         toggle_green_led();
         i = 0;
     }
-*/
+
 }

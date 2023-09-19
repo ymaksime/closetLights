@@ -160,14 +160,14 @@ static void handleCmdCall(char *buf) {
     
     // List of all the mnemonics of the available functions
     static const char read_str[] = 
-    "LEDR LEDG ADC5 ADC7 ADCR VERG DACS DACR ECHO LITE";
+    "LEDR LEDG ADC5 ADC7 ADCR VERG ECHO LITE";
     
     // List of function pointers
     // Every entry corresponds to an entry in the read_str[] array
     static void (* const readfns[sizeof(read_str)/(CMD_SIZE + 1)])(void) =
     {
         func_led_r, func_led_g, func_adc_5, func_adc_7, func_adc_read,
-        func_version, func_dac_set, func_dac_read, func_echo, func_light_set
+        func_version, func_echo, func_light_set
     };
     
     // Find the index of the first match
@@ -224,16 +224,6 @@ void func_version(void) {
     sendString(VERSION);
 }
 
-void func_dac_set(void) {
-    uint16_t dac_value = receiveAsciiAsUint16(&cmdBuffer[CMD_SIZE + 1]);
-    dac_set((uint8_t) dac_value);
-}
-
-void func_dac_read(void) {
-    send8BytesAsAsciiHex(dac_get());
-    handleCR();
-}
-
 void func_echo(void) {
     // Get the value followed the ECHO command
     uint16_t echo_val = receiveAsciiAsUint16(&cmdBuffer[CMD_SIZE + 1]);
@@ -248,9 +238,7 @@ void func_echo(void) {
 }
 
 void func_light_set(void) {
-    // Get the value for requested for lights state
-    uint16_t light_value = receiveAsciiAsUint16(&cmdBuffer[CMD_SIZE + 1]);
-    dac_set(milli_amps_to_dac(light_value));
+    //TODO
 }
 
 

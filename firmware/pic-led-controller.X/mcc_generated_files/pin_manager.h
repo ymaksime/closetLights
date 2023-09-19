@@ -77,18 +77,6 @@
 #define RA4_SetAnalogMode()         do { ANSELAbits.ANSA4 = 1; } while(0)
 #define RA4_SetDigitalMode()        do { ANSELAbits.ANSA4 = 0; } while(0)
 
-// get/set RB4 procedures
-#define RB4_SetHigh()            do { LATBbits.LATB4 = 1; } while(0)
-#define RB4_SetLow()             do { LATBbits.LATB4 = 0; } while(0)
-#define RB4_Toggle()             do { LATBbits.LATB4 = ~LATBbits.LATB4; } while(0)
-#define RB4_GetValue()              PORTBbits.RB4
-#define RB4_SetDigitalInput()    do { TRISBbits.TRISB4 = 1; } while(0)
-#define RB4_SetDigitalOutput()   do { TRISBbits.TRISB4 = 0; } while(0)
-#define RB4_SetPullup()             do { WPUBbits.WPUB4 = 1; } while(0)
-#define RB4_ResetPullup()           do { WPUBbits.WPUB4 = 0; } while(0)
-#define RB4_SetAnalogMode()         do { ANSELBbits.ANSB4 = 1; } while(0)
-#define RB4_SetDigitalMode()        do { ANSELBbits.ANSB4 = 0; } while(0)
-
 // get/set RB5 procedures
 #define RB5_SetHigh()            do { LATBbits.LATB5 = 1; } while(0)
 #define RB5_SetLow()             do { LATBbits.LATB5 = 0; } while(0)
@@ -120,18 +108,6 @@
 #define sensor_SetOpenDrain()       do { ODCONCbits.ODC1 = 1; } while(0)
 #define sensor_SetAnalogMode()      do { ANSELCbits.ANSC1 = 1; } while(0)
 #define sensor_SetDigitalMode()     do { ANSELCbits.ANSC1 = 0; } while(0)
-
-// get/set RC2 procedures
-#define RC2_SetHigh()            do { LATCbits.LATC2 = 1; } while(0)
-#define RC2_SetLow()             do { LATCbits.LATC2 = 0; } while(0)
-#define RC2_Toggle()             do { LATCbits.LATC2 = ~LATCbits.LATC2; } while(0)
-#define RC2_GetValue()              PORTCbits.RC2
-#define RC2_SetDigitalInput()    do { TRISCbits.TRISC2 = 1; } while(0)
-#define RC2_SetDigitalOutput()   do { TRISCbits.TRISC2 = 0; } while(0)
-#define RC2_SetPullup()             do { WPUCbits.WPUC2 = 1; } while(0)
-#define RC2_ResetPullup()           do { WPUCbits.WPUC2 = 0; } while(0)
-#define RC2_SetAnalogMode()         do { ANSELCbits.ANSC2 = 1; } while(0)
-#define RC2_SetDigitalMode()        do { ANSELCbits.ANSC2 = 0; } while(0)
 
 // get/set vMeas aliases
 #define vMeas_TRIS                 TRISCbits.TRISC3

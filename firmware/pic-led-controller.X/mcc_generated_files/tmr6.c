@@ -1,24 +1,24 @@
 /**
-  OPA1 Generated Driver File
+  TMR6 Generated Driver File
 
   @Company
     Microchip Technology Inc.
 
   @File Name
-    opa1.c
+    tmr6.c
 
   @Summary
-    This is the generated driver implementation file for the OPA1 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+    This is the generated driver implementation file for the TMR6 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
 
   @Description
-    This source file provides implementations for driver APIs for OPA1.
+    This source file provides APIs for TMR6.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.8
         Device            :  PIC16LF1709
         Driver Version    :  2.01
     The generated drivers are tested against the following:
         Compiler          :  XC8 2.36 and above
-        MPLAB             :  MPLAB X 6.00
+        MPLAB 	          :  MPLAB X 6.00
 */
 
 /*
@@ -49,17 +49,76 @@
 */
 
 #include <xc.h>
-#include "opa1.h"
+#include "tmr6.h"
 
 /**
-  Section: OPA1 APIs
+  Section: Global Variables Definitions
 */
 
-void OPA1_Initialize(void)
+/**
+  Section: TMR6 APIs
+*/
+
+void TMR6_Initialize(void)
 {
-    // OPA1SP High_GBWP_mode; OPA1EN enabled; OPA1PCH DAC; OPA1UG OPAIN-_pin; 
-    OPA1CON = 0xC2;
+    // Set TMR6 to the options selected in the User Interface
+
+    // PR6 249; 
+    PR6 = 0xF9;
+
+    // TMR6 0; 
+    TMR6 = 0x00;
+
+    // Clearing IF flag.
+    PIR2bits.TMR6IF = 0;
+
+    // T6CKPS 1:16; T6OUTPS 1:1; TMR6ON on; 
+    T6CON = 0x06;
+}
+
+void TMR6_StartTimer(void)
+{
+    // Start the Timer by writing to TMRxON bit
+    T6CONbits.TMR6ON = 1;
+}
+
+void TMR6_StopTimer(void)
+{
+    // Stop the Timer by writing to TMRxON bit
+    T6CONbits.TMR6ON = 0;
+}
+
+uint8_t TMR6_ReadTimer(void)
+{
+    uint8_t readVal;
+
+    readVal = TMR6;
+
+    return readVal;
+}
+
+void TMR6_WriteTimer(uint8_t timerVal)
+{
+    // Write to the Timer6 register
+    TMR6 = timerVal;
+}
+
+void TMR6_LoadPeriodRegister(uint8_t periodVal)
+{
+   PR6 = periodVal;
+}
+
+bool TMR6_HasOverflowOccured(void)
+{
+    // check if  overflow has occurred by checking the TMRIF bit
+    bool status = PIR2bits.TMR6IF;
+    if(status)
+    {
+        // Clearing IF flag.
+        PIR2bits.TMR6IF = 0;
+    }
+    return status;
 }
 /**
- End of File
+  End of File
 */

@@ -1,17 +1,17 @@
 /**
-  TMR4 Generated Driver API Header File
+  TMR6 Generated Driver API Header File
 
   @Company
     Microchip Technology Inc.
 
   @File Name
-    tmr4.h
+    tmr6.h
 
   @Summary
-    This is the generated header file for the TMR4 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+    This is the generated header file for the TMR6 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
 
   @Description
-    This header file provides APIs for TMR4.
+    This header file provides APIs for TMR6.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.8
         Device            :  PIC16LF1709
@@ -44,8 +44,8 @@
     SOFTWARE.
 */
 
-#ifndef TMR4_H
-#define TMR4_H
+#ifndef TMR6_H
+#define TMR6_H
 
 /**
   Section: Included Files
@@ -66,16 +66,16 @@
 */
 
 /**
-  Section: TMR4 APIs
+  Section: TMR6 APIs
 */
 
 /**
   @Summary
-    Initializes the TMR4 module.
+    Initializes the TMR6 module.
 
   @Description
-    This function initializes the TMR4 Registers.
-    This function must be called before any other TMR4 function is called.
+    This function initializes the TMR6 Registers.
+    This function must be called before any other TMR6 function is called.
 
   @Preconditions
     None
@@ -93,25 +93,25 @@
     <code>
     main()
     {
-        // Initialize TMR4 module
-        TMR4_Initialize();
+        // Initialize TMR6 module
+        TMR6_Initialize();
 
         // Do something else...
     }
     </code>
 */
-void TMR4_Initialize(void);
+void TMR6_Initialize(void);
 
 /**
   @Summary
-    This function starts the TMR4.
+    This function starts the TMR6.
 
   @Description
-    This function starts the TMR4 operation.
-    This function must be called after the initialization of TMR4.
+    This function starts the TMR6 operation.
+    This function must be called after the initialization of TMR6.
 
   @Preconditions
-    Initialize  the TMR4 before calling this function.
+    Initialize  the TMR6 before calling this function.
 
   @Param
     None
@@ -121,26 +121,26 @@ void TMR4_Initialize(void);
 
   @Example
     <code>
-    // Initialize TMR4 module
+    // Initialize TMR6 module
 
-    // Start TMR4
-    TMR4_StartTimer();
+    // Start TMR6
+    TMR6_StartTimer();
 
     // Do something else...
     </code>
 */
-void TMR4_StartTimer(void);
+void TMR6_StartTimer(void);
 
 /**
   @Summary
-    This function stops the TMR4.
+    This function stops the TMR6.
 
   @Description
-    This function stops the TMR4 operation.
-    This function must be called after the start of TMR4.
+    This function stops the TMR6 operation.
+    This function must be called after the start of TMR6.
 
   @Preconditions
-    Initialize  the TMR4 before calling this function.
+    Initialize  the TMR6 before calling this function.
 
   @Param
     None
@@ -150,67 +150,67 @@ void TMR4_StartTimer(void);
 
   @Example
     <code>
-    // Initialize TMR4 module
+    // Initialize TMR6 module
 
-    // Start TMR4
-    TMR4_StartTimer();
+    // Start TMR6
+    TMR6_StartTimer();
 
     // Do something else...
 
-    // Stop TMR4;
-    TMR4_StopTimer();
+    // Stop TMR6;
+    TMR6_StopTimer();
     </code>
 */
-void TMR4_StopTimer(void);
+void TMR6_StopTimer(void);
 
 /**
   @Summary
-    Reads the TMR4 register.
+    Reads the TMR6 register.
 
   @Description
-    This function reads the TMR4 register value and return it.
+    This function reads the TMR6 register value and return it.
 
   @Preconditions
-    Initialize  the TMR4 before calling this function.
+    Initialize  the TMR6 before calling this function.
 
   @Param
     None
 
   @Returns
-    This function returns the current value of TMR4 register.
+    This function returns the current value of TMR6 register.
 
   @Example
     <code>
-    // Initialize TMR4 module
+    // Initialize TMR6 module
 
-    // Start TMR4
-    TMR4_StartTimer();
+    // Start TMR6
+    TMR6_StartTimer();
 
-    // Read the current value of TMR4
-    if(0 == TMR4_ReadTimer())
+    // Read the current value of TMR6
+    if(0 == TMR6_ReadTimer())
     {
         // Do something else...
 
         // Reload the TMR value
-        TMR4_Reload();
+        TMR6_Reload();
     }
     </code>
 */
-uint8_t TMR4_ReadTimer(void);
+uint8_t TMR6_ReadTimer(void);
 
 /**
   @Summary
-    Writes the TMR4 register.
+    Writes the TMR6 register.
 
   @Description
-    This function writes the TMR4 register.
-    This function must be called after the initialization of TMR4.
+    This function writes the TMR6 register.
+    This function must be called after the initialization of TMR6.
 
   @Preconditions
-    Initialize  the TMR4 before calling this function.
+    Initialize  the TMR6 before calling this function.
 
   @Param
-    timerVal - Value to write into TMR4 register.
+    timerVal - Value to write into TMR6 register.
 
   @Returns
     None
@@ -222,34 +222,34 @@ uint8_t TMR4_ReadTimer(void);
 
     while(1)
     {
-        // Read the TMR4 register
-        if(ZERO == TMR4_ReadTimer())
+        // Read the TMR6 register
+        if(ZERO == TMR6_ReadTimer())
         {
             // Do something else...
 
-            // Write the TMR4 register
-            TMR4_WriteTimer(PERIOD);
+            // Write the TMR6 register
+            TMR6_WriteTimer(PERIOD);
         }
 
         // Do something else...
     }
     </code>
 */
-void TMR4_WriteTimer(uint8_t timerVal);
+void TMR6_WriteTimer(uint8_t timerVal);
 
 /**
   @Summary
     Load value to Period Register.
 
   @Description
-    This function writes the value to PR4 register.
-    This function must be called after the initialization of TMR4.
+    This function writes the value to PR6 register.
+    This function must be called after the initialization of TMR6.
 
   @Preconditions
-    Initialize  the TMR4 before calling this function.
+    Initialize  the TMR6 before calling this function.
 
   @Param
-    periodVal - Value to load into TMR4 register.
+    periodVal - Value to load into TMR6 register.
 
   @Returns
     None
@@ -262,8 +262,8 @@ void TMR4_WriteTimer(uint8_t timerVal);
 
     while(1)
     {
-        // Read the TMR4 register
-        if(ZERO == TMR4_ReadTimer())
+        // Read the TMR6 register
+        if(ZERO == TMR6_ReadTimer())
         {
             // Do something else...
 
@@ -272,14 +272,14 @@ void TMR4_WriteTimer(uint8_t timerVal);
                 flag = 0;
 
                 // Load Period 1 value
-                TMR4_LoadPeriodRegister(PERIOD1);
+                TMR6_LoadPeriodRegister(PERIOD1);
             }
             else
             {
                  flag = 1;
 
                 // Load Period 2 value
-                TMR4_LoadPeriodRegister(PERIOD2);
+                TMR6_LoadPeriodRegister(PERIOD2);
             }
         }
 
@@ -287,80 +287,42 @@ void TMR4_WriteTimer(uint8_t timerVal);
     }
     </code>
 */
-void TMR4_LoadPeriodRegister(uint8_t periodVal);
+void TMR6_LoadPeriodRegister(uint8_t periodVal);
 
 /**
   @Summary
-    Timer Interrupt Service Routine
+    Boolean routine to poll or to check for the match flag on the fly.
 
   @Description
-    Timer Interrupt Service Routine is called by the Interrupt Manager.
+    This function is called to check for the timer match flag.
+    This function is used in timer polling method.
 
   @Preconditions
-    Initialize  the TMR4 module with interrupt before calling this isr.
+    Initialize  the TMR6 module before calling this routine.
 
   @Param
     None
 
   @Returns
-    None
+    true - timer match has occurred.
+    false - timer match has not occurred.
+
+  @Example
+    <code>
+    while(1)
+    {
+        // check the match flag
+        if(TMR6_HasOverflowOccured())
+        {
+            // Do something else...
+
+            // Reload the TMR6 value
+            TMR6_Reload();
+        }
+    }
+    </code>
 */
-void TMR4_ISR(void);
-
-/**
-  @Summary
-    Set Timer Interrupt Handler
-
-  @Description
-    This sets the function to be called during the ISR
-
-  @Preconditions
-    Initialize  the TMR4 module with interrupt before calling this.
-
-  @Param
-    Address of function to be set
-
-  @Returns
-    None
-*/
- void TMR4_SetInterruptHandler(void (* InterruptHandler)(void));
-
-/**
-  @Summary
-    Timer Interrupt Handler
-
-  @Description
-    This is a function pointer to the function that will be called during the ISR
-
-  @Preconditions
-    Initialize  the TMR4 module with interrupt before calling this isr.
-
-  @Param
-    None
-
-  @Returns
-    None
-*/
-extern void (*TMR4_InterruptHandler)(void);
-
-/**
-  @Summary
-    Default Timer Interrupt Handler
-
-  @Description
-    This is the default Interrupt Handler function
-
-  @Preconditions
-    Initialize  the TMR4 module with interrupt before calling this isr.
-
-  @Param
-    None
-
-  @Returns
-    None
-*/
-void TMR4_DefaultInterruptHandler(void);
-
+bool TMR6_HasOverflowOccured(void);
 
  #ifdef __cplusplus  // Provide C++ Compatibility
 
@@ -368,7 +330,7 @@ void TMR4_DefaultInterruptHandler(void);
 
 #endif
 
-#endif // TMR4_H
+#endif // TMR6_H
 /**
  End of File
 */
