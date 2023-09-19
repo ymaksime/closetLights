@@ -104,7 +104,8 @@ class PIC:
         if not isinstance(dac_value, int):
             raise TypeError("Expected an integer")
         if 0 <= dac_value <= 255:
-            print('hi')
+            s.write('DACS ' + str(dac_value))
+            print("dac value = {}".format(dac_value))
         else:
             raise ValueError("Expected an 8-bit value")
 
