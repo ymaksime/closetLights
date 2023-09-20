@@ -18,9 +18,12 @@
 #ifdef	__cplusplus
 extern "C" {
 #endif
+    
+#define MAX_PWM_VALUE 999
 
 void light_control_init(void);
-
+void light_set_intensity(uint16_t new_pwm_value);
+void light_control_isr_handler(void);
 #ifdef	__cplusplus
 }
 #endif

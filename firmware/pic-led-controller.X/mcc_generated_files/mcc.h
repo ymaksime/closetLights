@@ -54,8 +54,8 @@
 #include <conio.h>
 #include "interrupt_manager.h"
 #include "fvr.h"
-#include "pwm3.h"
 #include "tmr6.h"
+#include "pwm3.h"
 #include "tmr2.h"
 #include "adc.h"
 #include "eusart.h"

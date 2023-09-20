@@ -3420,7 +3420,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="Pin Module" registerAlias="RC2PPS"/>
-         <value>0</value>
+         <value>14</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="Pin Module" registerAlias="RC3PPS"/>
@@ -3492,7 +3492,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="Pin Module" registerAlias="TRISC"/>
-         <value>63</value>
+         <value>59</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="Pin Module" registerAlias="WPUA"/>
@@ -4076,7 +4076,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="Pin Module" registerAlias="RC2PPS" settingAlias="RC2PPS"/>
-         <value>0</value>
+         <value>14</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="Pin Module" registerAlias="RC3PPS" settingAlias="RC3PPS"/>
@@ -4240,7 +4240,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="Pin Module" registerAlias="TRISC" settingAlias="TRISC2"/>
-         <value>input</value>
+         <value>output</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="Pin Module" registerAlias="TRISC" settingAlias="TRISC3"/>
@@ -4779,6 +4779,10 @@
          <value>-1</value>
       </entry>
       <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR6" name="CallbackFuncRate"/>
+         <value>0</value>
+      </entry>
+      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR6" name="TMR6_TMRIISRFunction"/>
          <value>ISR</value>
       </entry>
@@ -4944,7 +4948,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR6" registerAlias="TMRI" settingAlias="enable"/>
-         <value>disabled</value>
+         <value>enabled</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR6" registerAlias="TMRI" settingAlias="flag"/>
@@ -5057,44 +5061,44 @@
    </tokenMap>
    <generatedFileHashHistoryMap class="java.util.HashMap">
       <entry>
+         <file>mcc_generated_files\interrupt_manager.h</file>
+         <hash>85fa91ac9f387e568ac91f30c09bee7f2c60f1aa1b11aa9fbcd5e65201eac4bb</hash>
+      </entry>
+      <entry>
          <file>mcc_generated_files\mcc.h</file>
-         <hash>00d2acfa3252d778245e433a8dbabda179d000a8c12af931aa63e918660302c9</hash>
+         <hash>e9879f6735da9f8e565e8256b4a8c2904ebeba25f41d77842f1c52425c0b9ad1</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\device_config.h</file>
          <hash>c67efbc01254e20651afe4c37c6bdbba4a2a31ccfdbac0896de53921fd41f874</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\interrupt_manager.h</file>
-         <hash>85fa91ac9f387e568ac91f30c09bee7f2c60f1aa1b11aa9fbcd5e65201eac4bb</hash>
-      </entry>
-      <entry>
          <file>mcc_generated_files\tmr6.h</file>
-         <hash>915db66772e32ac199f75ae7de48c3e39843aa92ccc2582ceafaf71cbbcce8a8</hash>
+         <hash>6ec1109e772d951d936e1ff51510378aea1e75ae6c7aa12c5007c15cb5d18c54</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\tmr6.c</file>
-         <hash>a1de26761efee1e6fee4e09138f3af815e79008d68e36b9335c7f881f3f16fa2</hash>
+         <hash>17e00f8f12647953905bf1c7bf5b977876d0da6eabc33c0d7e499a622a19f3b6</hash>
       </entry>
       <entry>
          <file>main.c</file>
          <hash>405fa31140fb8fe5ebef939c9e3502f7602aa6734f5add368f5a28e8cb4f6414</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\tmr2.h</file>
-         <hash>29d6297d2f34cdd9ced6b919f8f41299951135349f553ca0b07a998b019e9cfb</hash>
-      </entry>
-      <entry>
          <file>mcc_generated_files\device_config.c</file>
          <hash>cf32a35567df6a342459f22da0ae9f830321b7029df669dd0161cb68ed6a4390</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\tmr2.c</file>
-         <hash>61bc11cae97caad853fd7fe6e4ed3dab8086295a9f6f1d3d0bd26bb24e441b4f</hash>
+         <file>mcc_generated_files\tmr2.h</file>
+         <hash>29d6297d2f34cdd9ced6b919f8f41299951135349f553ca0b07a998b019e9cfb</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\pin_manager.h</file>
-         <hash>472d9c7dbe39d03d1c71867a8ce819a03fbf8a0a5da15aa8d010169469ea08ea</hash>
+         <hash>a6699aa23363aa75b9811f9e26cc732b9fbbc8ee545712bd658ee71467d66b9b</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\tmr2.c</file>
+         <hash>61bc11cae97caad853fd7fe6e4ed3dab8086295a9f6f1d3d0bd26bb24e441b4f</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\adc.h</file>
@@ -5106,7 +5110,7 @@
       </entry>
       <entry>
          <file>mcc_generated_files\pin_manager.c</file>
-         <hash>8441ed8d73436ea42196e9c0d3dbb67c5c79c85f69ada291e18fd1e2ba20a8e3</hash>
+         <hash>1ba427143bbf48b40ad4639eb387b6a13c715d3a8abb2004ad2938a354688e8d</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\eusart.h</file>
@@ -5129,12 +5133,12 @@
          <hash>992f14840eb45bea99ee3e0a372a9f87518bf31cd6299b0e1b229a733a11cac0</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\mcc.c</file>
-         <hash>45c261fa39ce9618a64ecbafe2aa24ce9bd3da9c6260537444f401e3f6e13aba</hash>
+         <file>mcc_generated_files\interrupt_manager.c</file>
+         <hash>d2c4d685d8ddb9b5d14abd1eacfa78233271f3722b883a723a936b7927c05979</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\interrupt_manager.c</file>
-         <hash>7a53c90a4099be606f9b80710745f32a30c9b28f8e9d24375e3bc55c7bd4c7ea</hash>
+         <file>mcc_generated_files\mcc.c</file>
+         <hash>45c261fa39ce9618a64ecbafe2aa24ce9bd3da9c6260537444f401e3f6e13aba</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\pwm3.c</file>

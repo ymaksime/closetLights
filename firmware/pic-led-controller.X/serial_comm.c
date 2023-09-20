@@ -238,7 +238,9 @@ void func_echo(void) {
 }
 
 void func_light_set(void) {
-    //TODO
+    // Get the value after the LITE command
+    uint16_t pwm_value = receiveAsciiAsUint16(&cmdBuffer[CMD_SIZE + 1]);
+    light_set_intensity(pwm_value);
 }
 
 
