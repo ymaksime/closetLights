@@ -71,6 +71,8 @@ void main(void)
     {
         // Run the serial communication state-machine
         serial_comm_check();
+        // Next run the light control state-machine
+        light_control_statemachine();
     }
 }
 /**
