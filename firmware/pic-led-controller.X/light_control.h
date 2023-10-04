@@ -14,6 +14,7 @@
 #include "mcc_generated_files/mcc.h"
 #include "adc_control.h"
 #include "leds.h"
+#include "serial_comm.h"
 
 #ifdef	__cplusplus
 extern "C" {
@@ -31,11 +32,13 @@ extern "C" {
     // maxim allowed Vin should be no greater than 12.8V, then it corresponds
     // to 0.60952V or 610mV.  The corresponding ADC value would be equal to half
     // of this, i.e. 305.  See additional info for adc_read() function.
-#define MAX_VOLTAGE_READING 305
+    // To account for the tolorances in the resistive network, we should lower
+    // the value
+#define MAX_VOLTAGE_READING 290
     // Maximum delta between MAX and MIN readings of the photoresistor sensor
     // If exceeded, we need have a "significant" ambient light intesnsity change
     // and need to update the system
-#define SENSOR_READINGS_DELTA 50
+#define SENSOR_READINGS_DELTA 200
     // States of ambient light intensity change
 typedef enum { LIGHTER, DARKER, SAME } AmbientState;
     
@@ -55,7 +58,9 @@ void light_set_intensity(uint16_t new_pwm_value);
 void light_control_statemachine(void);
 void pwm_control_isr_handler(void);
 void statemachine_isr_handler(void);
+void external_control_isr_handler(void);
 bool is_input_voltage_ok(void);
+bool is_input_voltage_ok_2(void);
 void lights_off_immediately(void);
 #ifdef	__cplusplus
 }

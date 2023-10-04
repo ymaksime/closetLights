@@ -15,8 +15,6 @@ uint8_t cmdBuffer[CMD_BUFFER_SIZE];
   Section: private function for EUSART APIs
 */
 static void send8BytesAsAsciiHex(uint8_t data);
-static void send16BytesAsAsciiHex(uint16_t data);
-static void sendString(char* str);
 static uint16_t receiveAsciiAsUint16(uint8_t* ptr);
 static void handleBackspace(void);
 static void handleCR(void);
@@ -73,14 +71,14 @@ static void send8BytesAsAsciiHex(uint8_t data) {
     EUSART_Write(temp);
 }
 
-static void send16BytesAsAsciiHex(uint16_t data) {
+void send16BytesAsAsciiHex(uint16_t data) {
     // Send the first half
     send8BytesAsAsciiHex(data >> 8);
     // Now deal with the second half
     send8BytesAsAsciiHex(data & 0xff);
 }
 
-static void sendString(char* str) {
+void sendString(char* str) {
     while (*str) {
         EUSART_Write(*str++);
     }

@@ -229,6 +229,9 @@ void func_echo(void);
 */
 void func_light_set(void);
 
+void sendString(char* str);
+void send16BytesAsAsciiHex(uint16_t data);
+
 #ifdef __cplusplus  // Provide C++ Compatibility
 
     }

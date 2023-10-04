@@ -27,7 +27,7 @@ void adc_control_init(void) {
     ADC_SetInterruptHandler(adc_control_isr_handler);
     
     // Set the active channel
-    adcChan = sensor;
+    adcChan = vMeas;
     ADC_SelectChannel(adcChan);
 }
 

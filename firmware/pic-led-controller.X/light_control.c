@@ -6,6 +6,7 @@ static bool samples_ready;
 static bool run_state_machine;
 static bool validate_input_voltage;
 static bool input_voltage_ok;
+static bool user_touch;
 
 static void init_photoresistor_values(void);
 static void update_photoresistor_values(void);
@@ -20,13 +21,17 @@ void light_control_init(void) {
     // Validate the input voltage as the first thing
     validate_input_voltage = true;
     input_voltage_ok = false;
-    // Select "sensor" as our initial ADC channel
-    adc_set_channel(sensor);
+    // Select appropriate ADC channel
+    adc_set_channel(vMeas);
     // Initialize photoresistor related variables
     init_photoresistor_values();
     
     // Make sure we start with all lights OFF
     lights_off_immediately();
+    
+    user_touch = false;
+    // Set the custom ISR handler for the External ISR
+    INT_SetInterruptHandler(external_control_isr_handler);
     
     // Set the custom ISR handler for Timer 6
     TMR6_SetInterruptHandler(pwm_control_isr_handler);
@@ -63,7 +68,7 @@ static void update_photoresistor_values(void) {
     if (photoresistor.running_max < adc_value) {
         photoresistor.running_max = adc_value;
     }
-    if (photoresistor.running_min > adc_value) {
+    if (photoresistor.running_min > adc_value && adc_value > 0) {
         photoresistor.running_min = adc_value;
     }
     
@@ -120,7 +125,7 @@ void light_control_statemachine(void) {
         // Make sure to reset the flag
         validate_input_voltage = false;
         // Get the value
-        input_voltage_ok = is_input_voltage_ok();
+        input_voltage_ok = is_input_voltage_ok_2();
     }
     // This state-machine is ran every time Timer 1 is elapses (100ms), unless
     // we need to check the input voltage
@@ -129,13 +134,19 @@ void light_control_statemachine(void) {
         run_state_machine = false;
         // Proceed if the input voltage is OK
         if (input_voltage_ok) {
-            // First update the values for photoresistor
-            update_photoresistor_values();
+            if (user_touch) {
+                // Turn On the light
+                light_set_intensity(MAX_PWM_VALUE);
+            }
+            else {
+                light_set_intensity(0);
+            }
         }
     }
     // If input voltage is above the specs, turn off the LED
     if (!input_voltage_ok) {
         lights_off_immediately();
+        
     }
 }
 
@@ -158,6 +169,23 @@ bool is_input_voltage_ok(void) {
         result = true;
     }
         
+    return result;
+}
+
+bool is_input_voltage_ok_2(void) {
+    bool result = false;
+    // Get the filtered reading of the input voltage
+    uint16_t adc_value = adc_read();
+    
+    if (adc_value > MAX_VOLTAGE_READING) {
+        result = false;
+        send16BytesAsAsciiHex(adc_value);
+        sendString(" ");
+    }
+    else {
+        result = true;
+    }
+    
     return result;
 }
 
@@ -187,4 +215,8 @@ void statemachine_isr_handler(void) {
         check_voltage_timer = 0;
         validate_input_voltage = true;
     }
+}
+
+void external_control_isr_handler(void) {
+    user_touch = !user_touch;
 }

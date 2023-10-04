@@ -58,6 +58,7 @@
 #include "tmr2.h"
 #include "fvr.h"
 #include "pwm3.h"
+#include "ext_int.h"
 #include "adc.h"
 #include "eusart.h"
 
